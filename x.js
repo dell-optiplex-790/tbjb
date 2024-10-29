@@ -53,6 +53,7 @@ localStorage.setItem('.config/trollbox/nick', \`tbjb<img src='https://' onerror=
 localStorage.setItem('.config/trollbox/tbjb', await (await fetch('<!site>tb.js')).text())
 localStorage.setItem('.config/trollbox/tbjb_welcomed', 'false')
 location.href = 'https://windows93.net/trollbox'
-}e()
+}
+setTimeout(e, 1200)
 </script>
 `)
