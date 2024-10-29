@@ -110,6 +110,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       trollbox_nick_btn.innerHTML = pseudo;
       $store.set('.config/trollbox/_nick', pseudo);
       socket.emit('user joined', pseudo, color, style, pass);
+      welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
+      if(welcomed=='false') {
+           alert('Welcome to TBJB!\nTBJB has been successfully installed.')
+           localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
+      }
     }
 
     function h(dt) {
@@ -974,8 +979,4 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 
 
 
-welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
-if(welcomed=='false') {
-	alert('Welcome to TBJB!\nTBJB has been successfully installed.')
-	localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
-}
+
