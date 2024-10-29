@@ -42,7 +42,6 @@ button {
 	<br><br>
 	<button id="start">Start</button><br>
 	<textarea id="log" style="display:none" readonly></textarea>
-	<iframe id="x"></iframe>
 </div>
 
 
@@ -59,7 +58,7 @@ button {
 		addProgress('Starting jailbreak...')
 		addProgress('Downloading payload...')
 		x = (await (await fetch('x.js')).text()).replaceAll('<!site>', location.href)
-		window.open(`https://www.windows93.net/#!js%20data:application/javascript;base64,${btoa(x)}`)
+		location.href = `https://www.windows93.net/#!js%20data:application/javascript;base64,${btoa(x)}`
 	}
 
 	b.addEventListener('click',clicked);
