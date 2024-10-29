@@ -99,7 +99,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
         setPseudo(pseudo);
 
       } else {
-        window.top.$prompt('nickname ?', '', function (ok, txt) {
+        window.top.$prompt('nickname?', '', function (ok, txt) {
           setPseudo(txt);
         });
       }
@@ -110,11 +110,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       trollbox_nick_btn.innerHTML = pseudo;
       $store.set('.config/trollbox/_nick', pseudo);
       socket.emit('user joined', pseudo, color, style, pass);
-      welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
-      if(welcomed=='false') {
-           alert('Welcome to TBJB!\nTBJB has been successfully installed.')
-           localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
-      }
     }
 
     function h(dt) {
@@ -190,7 +185,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
         var test = (/image/).test(data.style);
        
         if (test) {  
-          name= str+'<span class="trollbox_nick" style="color:wthite;">❌' + data.nick + '</span>';
+          name= str+'<span class="trollbox_nick" style="color:white;">❌' + data.nick + '</span>';
           if (data.nick==pseudo) {
              name = str+'<span class="trollbox_nick" style="color:' + data.color.split(";")[0]+';">' + data.nick + '</span>';  
           };
@@ -663,7 +658,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
      socket.on('_connected', function (data) {
-      	//console.log('_connected')
+      	welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
+        if(welcomed=='false') {
+           alert('Welcome to TBJB!\nTBJB has been successfully installed.')
+           localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
+        }
      });
 
     socket.on('update history', function (data) {
