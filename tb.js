@@ -1,9 +1,3 @@
-welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
-if(welcomed=='false') {
-	alert('Welcome to TBJB!\nTBJB has been successfully installed.')
-	localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
-}
-
 function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
@@ -980,3 +974,8 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 
 
 
+welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
+if(welcomed=='false') {
+	alert('Welcome to TBJB!\nTBJB has been successfully installed.')
+	localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
+}
