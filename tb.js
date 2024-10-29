@@ -204,6 +204,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     function sendMsg (msg) {
       
       if (typeof msg !== 'string') return;
+	  
+	  msg = msg.replaceAll('neocities.org', 'neo\u200Bcities.org')
+	  msg = msg.replaceAll('telegram', 'tele\u200Bgram')
+	  msg = msg.replaceAll('.gg', '.\u200Bgg')
+	  msg = msg.replaceAll('exe', 'e\u200Bxe')
       
       if (color == undefined) {color='white'};
       if (style == undefined) {style=''};
@@ -712,6 +717,10 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if (!data || typeof data.msg !== 'string') return;
       if (data.nick==undefined) {return};
       if (data.nick==null) {return};
+	  data.msg = data.msg.replaceAll('neo\u200Bcities.org', 'neocities.org')
+	  data.msg = data.msg.replaceAll('tele\u200Bgram', 'telegram')
+	  data.msg = data.msg.replaceAll('.\u200Bgg', '.gg')
+	  data.msg = data.msg.replaceAll('e\u200Bxe', 'exe')
       printMsg(data);
       // dynamic title
       if(document.hasFocus()==false){
