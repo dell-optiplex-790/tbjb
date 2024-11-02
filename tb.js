@@ -998,6 +998,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
 
-/* inject window.addons */
-Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_window.addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
+/* inject addons */
+Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
 
