@@ -1,6 +1,56 @@
 document.title = 'Trollbox#';
 document.querySelector('link[rel="shortcut icon"]').href = 'https://tangonell.github.io/TBsharp/favicon.ico';
 
+var helpMsg =""+
+    "_____________________    _   _                  \n"+
+    "\\__    ___/\\______   \\ _| |_| |_                \n"+
+    "   |    |   |    |  _/|_| |_| |_|               \n"+
+    "   |    |   |    |  \\  _| |_| |_                \n"+
+    "   |____|  /______  / |_| |_| |_|               \n"+
+    "                  \\/    |_| |_|     by Tangonell\n"+
+    "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––--–\n"+
+    "| COMMANDS:                                                                         |\n"+
+    "| /color htmlColor       eg: /color #C3FF00                                         |\n"+
+    "| /sin text period       eg: /sin # 50                                              |\n"+
+    "| /sin off               disable /sin                                               |\n"+
+    "| /lorem numberOfWords   eg: /lorem 10                                              |\n"+
+    "| /b string              eg: /b hello world                                         |\n"+
+    "| /font 2                set teh /b font (from 0 to 10)                             |\n"+
+    "| /reverse               upside down mode                                           |\n"+
+    "| /l337                  leet speak mode                                            |\n"+
+    "| /normal                normal mode                                                |\n"+
+    "| /img on/off            activate image embedding (do this at your own risk)        |\n"+
+    "| /yt on/off             activate youtube embedding                                 |\n"+
+    "| /k&zwnj;ao                   random kaomoji                                             |\n"+
+    "| /emo on/off            activate/desactivate ugly emoticons                        |\n"+
+    "| /say something         make browser say something                                 |\n"+
+    "| /say off               mute speech synthesizer                                    |\n"+
+    "| /pitch 1.5             set speech pitch (from 0.0 to 2.0) (FF)                    |\n"+
+    "| /rate 5.0              set speech rate (from 0.1 to 10.0) (FF)                    |\n";
+
+if (voices.length>0) {
+    helpMsg=helpMsg+"| /voice 3               set speech voice (from 0 to "+voices.length+", may bypass pitch and rate) |\n";
+};
+helpMsg=helpMsg+"| /zalgo [text]          he comes                                                   |\n"+
+    "| /vapor [text]          aesthetics                                                 |\n"+
+    "| /wrap [text]           wrap in flourish                                           |\n"+
+    "| /mess [text]           useless                                                    |\n"+
+    "| /ascii imageUrl        ascii art converter                                        |\n"+
+    "| /who                   list users by [home]                                       |\n"+
+    "| /o                     shortcut for /who                                          |\n"+
+    "| /block [home]          block user (or right click user's name, on the right)      |\n"+
+    "| /unblock [home]        unblock user (or click user's name, on the right)          |\n"+
+    "| /unblock               unblock every users                                        |\n"+
+    "| /room                  display room infos                                         |\n"+
+    "| /room [room name]      enter [room name]                                          |\n"+
+    "| /a                     shortcut for /room atrium                                  |\n"+
+    "| /r                     shortcut for /room                                         |\n"+
+    "| /scroll                toggle auto scroll                                         |\n"+
+    "| /clear                 clear teh chat                                             |\n"+
+    "| Suggestions?           https://github.com/Tangonell/TBsharp/issues                |\n"+
+    "–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n";
+
+
 $(document).click(function() {
     document.title = 'Trollbox#';
     noFocusMsg = 0;
