@@ -1,4 +1,5 @@
 document.title = 'Trollbox#';
+document.querySelector('link[rel="shortcut icon"]').href = 'https://tangonell.github.io/TBsharp/favicon.ico';
 
 $(document).click(function() {
     document.title = 'Trollbox#';
