@@ -60,6 +60,15 @@ function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
 
+window.addons = {
+	register: function(evt, cb){
+		if(this.callbacks[evt]) {
+			this.callbacks[evt].push(cb)
+		}
+	},
+	callbacks: {messageSender:[],messageReciever:[]}
+}
+
 function hpres(str, rule) {
 	return str.split(' ').join(String.fromCharCode(160))
 		.split('\n')
@@ -260,12 +269,68 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
     function sendMsg (msg) {
-      
+      var helpMsg =""+
+      "___________             .__  .__ __________                                          \n"+        
+      "\\__    ___/______  ____ |  | |  |\\______   \\ _______  ___                         \n"+
+      "   |    |  \\_  __ \\/  _ \\|  | |  | |    |  _//  _ \\  \\/  /                      \n"+
+      "   |    |   |  | \\(  <_> )  |_|  |_|    |   (  <_> >    <                           \n"+
+      "   |____|   |__|   \\____/|____/____/______  /\\____/__/\\_ \\ (v2.1)                \n"+
+      "                                          \\/            \\/                         \n"+
+      "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––--–\n"+
+      "| COMMANDS:                                                                         |\n"+
+      "| /color htmlColor       eg: /color #C3FF00                                         |\n"+
+      "| /sin text period       eg: /sin # 50                                              |\n"+
+      "| /sin off               disable /sin                                               |\n"+
+      "| /lorem numberOfWords   eg: /lorem 10                                              |\n"+
+      "| /b string              eg: /b hello world                                         |\n"+
+      "| /font 2                set teh /b font (from 0 to 10)                             |\n"+
+      "| /reverse               upside down mode                                           |\n"+
+      "| /l337                  leet speak mode                                            |\n"+
+      "| /normal                normal mode                                                |\n"+
+      "| /img on/off            activate image embedding (do this at your own risk)        |\n"+
+      "| /yt on/off             activate youtube embedding                                 |\n"+
+      "| /k&zwnj;ao                   random kaomoji                                             |\n"+
+      "| /emo on/off            activate/desactivate ugly emoticons                        |\n"+
+      "| /say something         make browser say something                                 |\n"+
+      "| /say off               mute speech synthesizer                                    |\n"+
+      "| /pitch 1.5             set speech pitch (from 0.0 to 2.0) (FF)                    |\n"+
+      "| /rate 5.0              set speech rate (from 0.1 to 10.0) (FF)                    |\n";
+
+      if (voices.length>0) {
+        helpMsg=helpMsg+"| /voice 3               set speech voice (from 0 to "+voices.length+", may bypass pitch and rate) |\n";
+      };
+      helpMsg=helpMsg+"| /zalgo [text]          he comes                                                   |\n"+
+      "| /vapor [text]          aesthetics                                                 |\n"+
+      "| /wrap [text]           wrap in flourish                                           |\n"+
+      "| /mess [text]           useless                                                    |\n"+
+      "| /ascii imageUrl        ascii art converter                                        |\n"+
+      "| /who                   list users by [home]                                       |\n"+
+      "| /o                     shortcut for /who                                          |\n"+
+      "| /block [home]          block user (or right click user's name, on the right)      |\n"+
+      "| /unblock [home]        unblock user (or click user's name, on the right)          |\n"+
+      "| /unblock               unblock every users                                        |\n"+
+      "| /room                  display room infos                                         |\n"+
+      "| /room [room name]      enter [room name]                                          |\n"+
+      "| /a                     shortcut for /room atrium                                  |\n"+
+      "| /r                     shortcut for /room                                         |\n"+
+      "| /scroll                toggle auto scroll                                         |\n"+
+      "| /clear                 clear teh chat                                             |\n"+
+      "| /store                 open teh tbjb store                                        |\n"+
+      "| Suggestions?           contact@windows93.net                                      |\n"+
+      "–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n";
       if (typeof msg !== 'string') return;
 	  
 	  msg = msg.replaceAll('telegram', 'tele\u200Bgram')
 	  msg = msg.replaceAll('.gg', '.\u200Bgg')
-	  msg = msg.replaceAll('exe', 'e\u200Bxe')
+	  msg = msg.replaceAll('discord', 'dis\u200Bcord')
+	  data = {msg}
+	  callbacks = Object.assign(window.addons.callbacks.messageSender)
+	  for(i=0;i<callbacks.length;i++) {
+	    callbacks[i](data)
+	  }
+	  msg = data.msg
+	  delete data
+	  delete callbacks
       
       if (color == undefined) {color='white'};
       if (style == undefined) {style=''};
@@ -788,8 +853,12 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if (data.nick==undefined) {return};
       if (data.nick==null) {return};
 	  data.msg = data.msg.replaceAll('tele\u200Bgram', 'telegram')
-	  data.msg = data.msg.replaceAll('.\u200Bgg', '.gg')
-	  data.msg = data.msg.replaceAll('e\u200Bxe', 'exe')
+	  data.msg = data.msg.replaceAll('dis\u200Bcord', 'discord')
+	  callbacks = Object.assign(window.addons.callbacks.messageReciever)
+	  for(i=0;i<callbacks.length;i++) {
+	    callbacks[i](data)
+	  }
+	  delete callbacks
       printMsg(data);
       // dynamic title
       if(document.hasFocus()==false){
@@ -831,7 +900,10 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 
     function send (e) {
       e.preventDefault();
-
+      if(trollbox_input.value==='/store') {
+	(s=>window.location.href=window.URL.createObjectURL(new Blob([s],{type:'text/html'})))(`<script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script><title>TBJB store</title><a href="https://windows93.net/trollbox"><h1 style="display:inline-block;font-size:48px;vertical-align:super">< Back       </h1></a><x style="float:right"><h1 style="display:inline-block;font-size:48px;vertical-align:super"><button onclick="$('#addon').click()">Install addon from file</button></h1><br></x><div id="addons"></div><input type="file"onchange="loadAddon(event)"id="addon"/><script>function refreshAddons(){$("#addons").html(""),Object.keys(localStorage).filter(e=>e.startsWith(".config/trollbox/tbjb_addons/")&&e.endsWith(".js")).forEach(e=>{name=e.slice(".config/trollbox/tbjb_addons/".length,-3),html=$("#addons").html(),$("#addons").html(html+'<div style="border:3px solid #ddd;border-radius:5px;margin:5"><h3>'+name+"</h3><button onclick=\\"localStorage.removeItem('"+e+"');refreshAddons();alert('"+name+" has been successfully removed.')\\">Uninstall</button></div>")})}async function loadAddon(e){f=e.target.files[0],n=f.name,j=await f.text(),n.endsWith(".js")?(localStorage.setItem(".config/trollbox/tbjb_addons/"+n,j),refreshAddons(),alert(n.slice(0,-3)+" has been successfully installed.")):alert("The file provided isn't Javascript code!")}refreshAddons(),$("#addon").hide();</script>`) 
+        return
+      }
       if (pseudo == 'undefined') { setPseudo("anonymous") };
       if (pseudo == null) { setPseudo("anonymous") };
 
@@ -1042,6 +1114,9 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       }
     }
 
+
+/* inject addons */
+Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>{try{eval(localStorage.getItem(e))}catch{alert(`Error loading addon: ${e.slice('.config/trollbox/tbjb_addons/'.length,-3)}`)}})
 
 
 

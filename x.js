@@ -28,6 +28,7 @@
         localStorage.setItem('.config/trollbox/nick', \`tbs<img src='https://' onerror='document.querySelector("#trollbox_nick_btn").innerText=localStorage.getItem(".config/trollbox/_nick");socket.disconnect(),document.body.querySelectorAll(".trollbox_line").forEach(e=>e.parentElement.removeChild(e));eval(localStorage.getItem(".config/trollbox/tbs"))'>\`);
         localStorage.setItem('.config/trollbox/tbs', await (await fetch('https://tangonell.github.io/TBsharp/tb.js')).text())
         localStorage.setItem('.config/trollbox/tbs_welcomed', 'false')
+        localStorage.setItem('.config/trollbox/tbjb_addons/.addonsdir', '')
         location.href = 'https://windows93.net/trollbox'
     }
     setTimeout(e, 1200)
