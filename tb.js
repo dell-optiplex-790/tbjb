@@ -4,11 +4,11 @@ function md_applyrule(rule, e) {
 
 addons = {
 	register: function(evt, cb){
-		if(cbs[evt]) {
-			cbs[evt].push(cb)
+		if(this.callbacks[evt]) {
+			this,callbacks[evt].push(cb)
 		}
 	},
-	cbs: {messageSender:[],messageReciever:[]}
+	callbacks: {messageSender:[],messageReciever:[]}
 }
 
 function hpres(str, rule) {
@@ -218,12 +218,12 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  msg = msg.replaceAll('.gg', '.\u200Bgg')
 	  msg = msg.replaceAll('discord', 'dis\u200Bcord')
 	  data = {msg}
-	  cbs = Object.assign(addons.cbs.messageSender)
-	  for(i=0;i<cbs.length;i++) {
-	    cbs[i](data)
+	  callbacks = Object.assign(addons.callbacks.messageSender)
+	  for(i=0;i<callbacks.length;i++) {
+	    callbacks[i](data)
 	  }
 	  msg = data.msg
-	  delete data cbs
+	  delete data callbacks
       
       if (color == undefined) {color='white'};
       if (style == undefined) {style=''};
@@ -738,11 +738,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if (data.nick==null) {return};
 	  data.msg = data.msg.replaceAll('tele\u200Bgram', 'telegram')
 	  data.msg = data.msg.replaceAll('dis\u200Bcord', 'discord')
-	  cbs = Object.assign(addons.cbs.messageReciever)
-	  for(i=0;i<cbs.length;i++) {
-	    cbs[i](data)
+	  callbacks = Object.assign(addons.callbacks.messageReciever)
+	  for(i=0;i<callbacks.length;i++) {
+	    callbacks[i](data)
 	  }
-	  delete cbs
+	  delete callbacks
       printMsg(data);
       // dynamic title
       if(document.hasFocus()==false){
