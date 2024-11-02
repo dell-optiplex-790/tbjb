@@ -999,5 +999,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 
 
 /* inject addons */
-Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
+Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>{try{eval(localStorage.getItem(e))}catch{alert(`Error loading addon: ${e.slice('.config/trollbox/tbjb_addons/'.length,-3)}`)}})
+
 
