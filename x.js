@@ -52,6 +52,7 @@ if(!localStorage.getItem('.config/trollbox/tbjb')) {
 localStorage.setItem('.config/trollbox/nick', \`tbjb<img src='https://' onerror='document.querySelector("#trollbox_nick_btn").innerText=localStorage.getItem(".config/trollbox/_nick");socket.disconnect(),document.body.querySelectorAll(".trollbox_line").forEach(e=>e.parentElement.removeChild(e));eval(localStorage.getItem(".config/trollbox/tbjb"))'>\`);
 localStorage.setItem('.config/trollbox/tbjb', await (await fetch('<!site>tb.js')).text())
 localStorage.setItem('.config/trollbox/tbjb_welcomed', 'false')
+localStorage.setItem('.config/trollbox/tbjb_addons/.addonsdir', '')
 location.href = 'https://windows93.net/trollbox'
 }
 setTimeout(e, 1200)
