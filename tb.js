@@ -716,10 +716,19 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
      socket.on('_connected', function (data) {
-      	welcomed = localStorage.getItem('.config/trollbox/tbs_welcomed')
+      	welcomed = localStorage.getItem('.config/trollbox/tbs_welcomed');
         if(welcomed=='false') {
-           alert('Welcome to Trollbox#!\nTrollbox# has been successfully installed.')
-           localStorage.setItem('.config/trollbox/tbs_welcomed', 'true')
+           alert('Welcome to Trollbox#!\nTrollbox# has been successfully installed.');
+           localStorage.setItem('.config/trollbox/tbs_welcomed', 'true');
+        } else {
+            printMsg({
+                date: Date.now(),
+                color: 'gold;Tangonell',
+                nick: 'Tangonell',
+                home: 'local',
+                msg: 'Welcome to Trollbox#! Hope you\'ll enjoy it.',
+                style: ''
+            });
         }
      });
 
