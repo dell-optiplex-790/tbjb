@@ -728,11 +728,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if(document.hasFocus()==false){
         noFocusMsg = noFocusMsg + 1;
         if(noFocusMsg>0){
-          document.title = 'trollbox ('+noFocusMsg+')';
+          document.title = `Trollbox# (${noFocusMsg})`;
         }
       }else{
         noFocusMsg=0;
-        document.title = 'trollbox';
+        document.title = 'Trollbox#';
       }
       //
     });
