@@ -1,63 +1,39 @@
-<title>TBJB</title>
-<style>
-body {
-	display: grid;
-	place-items: center;
-	height: 100vh;
-	margin: 0;
-	font-family: Consolas, monospace;
-	background-image: url(space.jpg);
-	background-size: cover;
-	color: #fff
-}
-div#c {
-	width: 400px;
-	height: 25vh;
-	text-align: center
-}
-
-button {
-	background-color: midnightblue;
-	color: #fff;
-	font-family: Consolas, monospace;
-}
-
-#log {
-	width: 417px;
-	height: 185px;
-	resize: none;
-	background-color: #000;
-	color: #fff;
-	font-family: Consolas, monospace;
-	outline: none;
-}
-
-::-moz-selection, ::selection {
-  background: transparent;
-}
-</style>
-<div id="c">
-	<h1>TBJB</h1>
-	<i>The most effective Trollbox jailbreak</i><br>
-	<br><br>
-	<button id="start">Start</button><br>
-	<textarea id="log" style="display:none" readonly></textarea>
-</div>
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Trollbox#</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<div id="container">
+		<h1>Trollbox<img
+			src="favicon.ico" alt="#"
+			style="display: inline; vertical-align: middle; width: 1em; height: 1em; margin: 0 10px 0 10px;"
+		></h1>
+		<i>A better Trollbox client.</i>
+		<br><br><br>
+		<button id="start"><b>Install</b></button><br>
+		<textarea id="log" style="display:none" readonly></textarea>
+	</div>
+	<footer>
+		<b>Credits:</b>
+		<a href="https://github.com/dell-optiplex-790/tbjb">dell-optiplex-790</a>,
+		<a href="https://github.com/tangonell/TBsharp">Tangonell</a>
+	</footer>
+</body>
 <script>
 	b = document.getElementById('start');
 	l = document.getElementById('log');
 	l.value = ''
-
 
 	async function clicked() {
 		b.remove()
 		l.style.display = ''
 		addProgress('Starting jailbreak...')
 		addProgress('Downloading payload...')
-		x = (await (await fetch('x.js')).text()).replaceAll('<!site>', location.href)
+		x = (await (await fetch('x.js')).text())
 		location.href = `https://www.windows93.net/#!js%20data:application/javascript;base64,${btoa(x)}`
 	}
 
@@ -66,5 +42,5 @@ button {
 	function addProgress(text) {
 		l.value += `${text}\n`
 	}
-
 </script>
+</html>
