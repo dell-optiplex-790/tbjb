@@ -1,3 +1,10 @@
+document.title = 'Trollbox#';
+
+$(document).click(function() {
+    document.title = 'Trollbox#';
+    noFocusMsg = 0;
+});
+
 function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
@@ -734,7 +741,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
         noFocusMsg=0;
         document.title = 'Trollbox#';
       }
-      //
     });
 
     socket.on('cmd', function (data) {
