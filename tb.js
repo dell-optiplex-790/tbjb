@@ -223,7 +223,8 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	    callbacks[i](data)
 	  }
 	  msg = data.msg
-	  delete data callbacks
+	  delete data
+	  delete callbacks
       
       if (color == undefined) {color='white'};
       if (style == undefined) {style=''};
