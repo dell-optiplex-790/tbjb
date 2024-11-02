@@ -7,7 +7,7 @@ var helpMsg =""+
     "   |    |   |    |  _/|_| |_| |_|               \n"+
     "   |    |   |    |  \\  _| |_| |_                \n"+
     "   |____|  /______  / |_| |_| |_|               \n"+
-    "                  \\/    |_| |_|     by Tangonell\n"+
+    "                  \\/    |_| |_|     by Tangonell & dell-optiplex-790\n"+
     "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––--–\n"+
     "| COMMANDS:                                                                         |\n"+
     "| /color htmlColor       eg: /color #C3FF00                                         |\n"+
@@ -49,6 +49,7 @@ helpMsg=helpMsg+"| /zalgo [text]          he comes                              
     "| /store                 open teh tbjb store                                        |\n"+
     "| /clear                 clear teh chat                                             |\n"+
     "| Suggestions?           https://github.com/Tangonell/TBsharp/issues                |\n"+
+    "|                        https://github.com/dell-optiplex-790/tbjb/issues           |\n"+
     "–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n";
 
 
