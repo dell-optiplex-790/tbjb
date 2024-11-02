@@ -1,0 +1,40 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    font-family: Consolas, monospace;
+    background: rgb(186,210,242);
+    background: radial-gradient(circle, rgba(186,210,242,1) 0%, rgba(168,199,224,1) 35%, rgba(101,149,184,1) 100%);
+}
+
+div#container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center
+}
+
+button {
+    background-color: #C3FF00;
+    color: black;
+    font-family: Consolas, monospace;
+}
+
+#log {
+    width: 417px;
+    height: 185px;
+    resize: none;
+    background-color: #000;
+    color: #FFF;
+    font-family: Consolas, monospace;
+    outline: none;
+}
