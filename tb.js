@@ -2,7 +2,7 @@ function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
 
-addons = {
+window.addons = {
 	register: function(evt, cb){
 		if(this.callbacks[evt]) {
 			this,callbacks[evt].push(cb)
@@ -218,7 +218,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  msg = msg.replaceAll('.gg', '.\u200Bgg')
 	  msg = msg.replaceAll('discord', 'dis\u200Bcord')
 	  data = {msg}
-	  callbacks = Object.assign(addons.callbacks.messageSender)
+	  callbacks = Object.assign(window.addons.callbacks.messageSender)
 	  for(i=0;i<callbacks.length;i++) {
 	    callbacks[i](data)
 	  }
@@ -739,7 +739,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if (data.nick==null) {return};
 	  data.msg = data.msg.replaceAll('tele\u200Bgram', 'telegram')
 	  data.msg = data.msg.replaceAll('dis\u200Bcord', 'discord')
-	  callbacks = Object.assign(addons.callbacks.messageReciever)
+	  callbacks = Object.assign(window.addons.callbacks.messageReciever)
 	  for(i=0;i<callbacks.length;i++) {
 	    callbacks[i](data)
 	  }
@@ -998,6 +998,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
 
-/* inject addons */
-Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
+/* inject window.addons */
+Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_window.addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
 
