@@ -5,7 +5,7 @@ function md_applyrule(rule, e) {
 window.addons = {
 	register: function(evt, cb){
 		if(this.callbacks[evt]) {
-			this,callbacks[evt].push(cb)
+			this.callbacks[evt].push(cb)
 		}
 	},
 	callbacks: {messageSender:[],messageReciever:[]}
