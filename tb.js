@@ -2,6 +2,15 @@ function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
 
+addons = {
+	register: function(evt, cb){
+		if(cbs[evt]) {
+			cbs[evt].push(cb)
+		}
+	},
+	cbs: {messageSender:[],messageReciever:[]}
+}
+
 function hpres(str, rule) {
 	return str.split(' ').join(String.fromCharCode(160))
 		.split('\n')
@@ -207,7 +216,14 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  
 	  msg = msg.replaceAll('telegram', 'tele\u200Bgram')
 	  msg = msg.replaceAll('.gg', '.\u200Bgg')
-	  msg = msg.replaceAll('exe', 'e\u200Bxe')
+	  msg = msg.replaceAll('discord', 'dis\u200Bcord')
+	  data = {msg}
+	  cbs = Object.assign(addons.cbs.messageSender)
+	  for(i=0;i<cbs.length;i++) {
+	    cbs[i](data)
+	  }
+	  msg = data.msg
+	  delete data cbs
       
       if (color == undefined) {color='white'};
       if (style == undefined) {style=''};
@@ -721,8 +737,12 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
       if (data.nick==undefined) {return};
       if (data.nick==null) {return};
 	  data.msg = data.msg.replaceAll('tele\u200Bgram', 'telegram')
-	  data.msg = data.msg.replaceAll('.\u200Bgg', '.gg')
-	  data.msg = data.msg.replaceAll('e\u200Bxe', 'exe')
+	  data.msg = data.msg.replaceAll('dis\u200Bcord', 'discord')
+	  cbs = Object.assign(addons.cbs.messageReciever)
+	  for(i=0;i<cbs.length;i++) {
+	    cbs[i](data)
+	  }
+	  delete cbs
       printMsg(data);
       // dynamic title
       if(document.hasFocus()==false){
@@ -977,5 +997,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
 
-
+/* inject addons */
+Object.keys(localStorage).filter(e=>e.startsWith('.config/trollbox/tbjb_addons/')&&e.endsWith('.js')).forEach(e=>eval(localStorage.getItem(e)))
 
