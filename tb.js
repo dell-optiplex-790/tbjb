@@ -775,7 +775,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  	}
 	  	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
 		for(i=0;i<callbacks.length;i++) {
-	    		callbacks[i]('join', dada)
+	    		callbacks[i]('join', data, dada)
 	  	}
 	  	delete callbacks
 	        printMsg(dada)
@@ -792,7 +792,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  	}
 	       	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
 		for(i=0;i<callbacks.length;i++) {
-	    		callbacks[i]('leave', dada)
+	    		callbacks[i]('leave', data, dada)
 	  	}
 	  	delete callbacks
 	        printMsg(dada)
@@ -810,7 +810,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
 	  	}
 	  	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
 		for(i=0;i<callbacks.length;i++) {
-	    		callbacks[i]('changeNick', dada)
+	    		callbacks[i]('changeNick', data, dada)
 	  	}
 	  	delete callbacks
 		printMsg(dada)
