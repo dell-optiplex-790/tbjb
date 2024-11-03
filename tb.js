@@ -8,7 +8,7 @@ window.addons = {
 			this.callbacks[evt].push(cb)
 		}
 	},
-	callbacks: {messageSender:[],messageReciever:[]}
+	callbacks: {messageSender:[],messageReciever:[],userListener:[],userActionMessageSender:[]}
 }
 
 function hpres(str, rule) {
@@ -767,18 +767,54 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
        if (data.nick==undefined) {data.nick="anonymous"};
        if (typeof data.nick != "string") {return};
        for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
-       if (data.nick) printMsg({date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'});     
+       if (data.nick) {
+	        dada = {date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'}
+		callbacks = Object.assign(window.addons.callbacks.userListener)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i]('join', data)
+	  	}
+	  	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i](dada)
+	  	}
+	  	delete callbacks
+	        printMsg(dada)
+       }
     });
 
     socket.on('user left', function (data) {
        for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
-       if (data.nick) printMsg({date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'});
+       if (data.nick) {
+	        dada = {date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'}
+	       	callbacks = Object.assign(window.addons.callbacks.userListener)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i]('leave', data)
+	  	}
+	       	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i](dada)
+	  	}
+	  	delete callbacks
+	        printMsg(dada)
+       }
     });
 
     socket.on('user change nick', function (data) {
         if (data[0].nick==data[1].nick) {return};
         for (var i = 0; i < blocked.length; i++) { if (data[1].home==blocked[i]) {return} };
-        if (data[1].nick) printMsg({date: Date.now(), color: '#af519b', nick: '~', home: data[1].home, msg: printNick(data[0]) + ' <em>is now known as</em> ' + printNick(data[1])});
+        if (data[1].nick) {
+		dada = {date: Date.now(), color: '#af519b', nick: '~', home: data[1].home, msg: printNick(data[0]) + ' <em>is now known as</em> ' + printNick(data[1])}
+		callbacks = Object.assign(window.addons.callbacks.userListener)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i]('changeNick', data)
+	  	}
+	  	callbacks = Object.assign(window.addons.callbacks.userActionMessageSender)
+		for(i=0;i<callbacks.length;i++) {
+	    		callbacks[i](dada)
+	  	}
+	  	delete callbacks
+		printMsg(dada)
+	}
     });
 
     socket.on('message', function (data) {
