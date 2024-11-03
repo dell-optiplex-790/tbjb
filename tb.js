@@ -768,11 +768,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
        if (typeof data.nick != "string") {return};
        for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
        if (data.nick) {
-	        dada = {date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'}
 		callbacks = Object.assign(window.addons.callbacks.userListener)
 		for(i=0;i<callbacks.length;i++) {
 	    		callbacks[i]('join', data)
 	  	}
+	        dada = {date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'}
 	  	callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender)
 		for(i=0;i<callbacks2.length;i++) {
 	    		callbacks2[i]('join', data, dada)
@@ -786,11 +786,11 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     socket.on('user left', function (data) {
        for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
        if (data.nick) {
-	        dada = {date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'}
 	       	callbacks = Object.assign(window.addons.callbacks.userListener)
 		for(i=0;i<callbacks.length;i++) {
 	    		callbacks[i]('leave', data)
 	  	}
+	        dada = {date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'}
 	       	callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender)
 		for(i=0;i<callbacks2.length;i++) {
 	    		callbacks2[i]('leave', data, dada)
