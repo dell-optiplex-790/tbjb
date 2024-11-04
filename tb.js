@@ -1,7 +1,7 @@
 async function checkIP() {
-    ip = await (await fetch('https://api.ipify.org')).text()
-    blacklist = ['176.59.172.232']
-    if(blacklist.includes(ip)) {
+    let ip = await (await fetch('https://api.ipify.org')).text()
+    let blacklist = ['176.59.172.232']
+    if (blacklist.includes(ip)) {
         document.write(`<title>nope</title><h1>you can't use trollbox</h1><p>Please get off the internet and go outside</p>`)
     }
 }
@@ -59,13 +59,30 @@ ${voices.length>0
 `
 }
 
+const emots = {
+    ";)": "wink",
+    ":)": "smile",
+    ":(": "sad",
+    ":d": "grin",
+    ":o": "suprised",
+    ":p": "tongue",
+    ":-|": "disappointed",
+    ":'(": "cry",
+    ":$": "shy",
+    "(H)": "cool",
+    "(bob)": "bob",
+    ":@": "angry",
+    ":s": "confused",
+    "<:o)": "party"
+};
+
 function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
 
 window.addons = {
-	register: function(evt, cb){
-		if(this.callbacks[evt]) {
+	register: function(evt, cb) {
+		if (this.callbacks[evt]) {
 			this.callbacks[evt].push(cb)
 		}
 	},
@@ -83,219 +100,191 @@ function hpres(str, rule) {
 
 function process_markdown(message) {
 	// don't colorify system messages
-	if(message.indexOf('<') != -1) return message;
+	if (message.indexOf('<') !== -1) {
+        return message;
+    }
 	message = (e => (e.innerHTML = message, e.innerText))
-			(document.createElement('div'));
+        (document.createElement('div'));
 	let reminder = message;
 	let result = document.createElement('div');
 	let match = null;
 	let rule = null;
-	while(match = reminder.match(/\$\(([^\)]+)\)/)) {
+	while (match = reminder.match(/\$\(([^\)]+)\)/)) {
 		let ind = reminder.indexOf(match[0]);
 		result.innerHTML += hpres(reminder.substr(0, ind), rule);
 		reminder = reminder.slice(ind + match[0].length);
 		rule = match[1];
 	}
-	if(reminder.length) {
+	if (reminder.length) {
 		result.appendChild(
 			((e) => (e.innerText = reminder,
 				rule?md_applyrule(rule, e):0,
 				e))
 			(document.createElement('span'))
-			);
-
+        );
 	}
 	return result.innerHTML;
 }
 
-var trollbox_scroll = document.getElementById('trollbox_scroll');
-    var trollbox_form = document.getElementById('trollbox_form');
-    var trollbox_infos = document.getElementById('trollbox_infos');
-    var trollbox_nick_btn = document.getElementById('trollbox_nick_btn');
-    var trollbox_input = document.getElementById('trollbox_input');
+let trollbox_scroll = document.getElementById('trollbox_scroll');
+let trollbox_form = document.getElementById('trollbox_form');
+let trollbox_infos = document.getElementById('trollbox_infos');
+let trollbox_nick_btn = document.getElementById('trollbox_nick_btn');
+let trollbox_input = document.getElementById('trollbox_input');
 
-    //var socket = io();
-    var socket = io('//www.windows93.net:8086');
+const socket = io('//www.windows93.net:8086');
 
-    var pseudo = $store.get('.config/trollbox/_nick') || '';
-    var color = $store.get('.config/trollbox/color') || '';
-    var style = $store.get('.config/trollbox/style') || '';
-    var pass = $store.get('.config/trollbox/pass') || '';
-    var imgShow = JSON.parse($store.get('.config/trollbox/img')) || false;
-    var ytShow = JSON.parse($store.get('.config/trollbox/yt')) || false;
-    var emoticons = JSON.parse($store.get('.config/trollbox/emoticons')) || false;
-    var sin = JSON.parse($store.get('.config/trollbox/sin')) || false;
-    var speech = JSON.parse($store.get('.config/trollbox/speech')) || false;
-    var pitch = $store.get('.config/trollbox/pitch') ||  0.1;
-    var rate = $store.get('.config/trollbox/rate') ||  1.0;
-    var voice = $store.get('.config/trollbox/voice') ||  0;
-    var blocked = $store.get('.config/trollbox/blocked') || [];
-    var fontName = $store.get('.config/trollbox/font') ||  "Graffiti";
+let pseudo = $store.get('.config/trollbox/_nick') || '';
+let color = $store.get('.config/trollbox/color') || '';
+let style = $store.get('.config/trollbox/style') || '';
+let pass = $store.get('.config/trollbox/pass') || '';
+let imgShow = JSON.parse($store.get('.config/trollbox/img')) || false;
+let ytShow = JSON.parse($store.get('.config/trollbox/yt')) || false;
+let emoticons = JSON.parse($store.get('.config/trollbox/emoticons')) || false;
+let sin = JSON.parse($store.get('.config/trollbox/sin')) || false;
+let speech = JSON.parse($store.get('.config/trollbox/speech')) || false;
+let pitch = $store.get('.config/trollbox/pitch') ||  0.1;
+let rate = $store.get('.config/trollbox/rate') ||  1.0;
+let voice = $store.get('.config/trollbox/voice') ||  0;
+let blocked = $store.get('.config/trollbox/blocked') || [];
+let fontName = $store.get('.config/trollbox/font') ||  "Graffiti";
 
-    var scroll = true;
-    var say;
+let scroll = true;
+let say;
 
-    var users=[];
+let users=[];
 
-    if (pseudo) {
-      setPseudo(pseudo);
-    } else {
-      getPseudo()
-    }
+if (pseudo) {
+    setPseudo(pseudo);
+} else {
+    getPseudo()
+}
 
-    trollbox_nick_btn.onclick = getPseudo;
+trollbox_nick_btn.onclick = getPseudo;
 
-    function chatKing(){
-      king = $("#trollbox_infos div span").first().html();
-      $("#trollbox_infos div span").first().before("<span style='float: left;margin-right: 4px;'>👑 </span>");
-      
-      $( "#trollbox_infos div" ).contextmenu(function() {
+function chatKing() {
+    $("#trollbox_infos div span").first().before("<span style='float: left;margin-right: 4px;'>👑 </span>");
+
+    $( "#trollbox_infos div" ).contextmenu(function() {
         sendMsg('/block '+$(this).children('span:last-child').text())
         return false
-      });
-      $( "#trollbox_infos div" ).click(function() {
+    });
+    $( "#trollbox_infos div" ).click(function() {
         sendMsg('/unblock '+$(this).children('span:last-child').text())
         return false
-      });   
-    }
+    });
+}
 
-    function getPseudo () {
-      if (window.top === window) {
-        pseudo = prompt('nickname ?');
-
-        if (pseudo==null) {pseudo="anonymous"};
-        if (pseudo) {}else{pseudo="anonymous"};
-        
+function getPseudo() {
+    if (window.top === window) {
+        pseudo = prompt('nickname ?') || 'anonymous';
         setPseudo(pseudo);
-
-      } else {
-        window.top.$prompt('nickname?', '', function (ok, txt) {
-          setPseudo(txt);
-        });
-      }
-    }
-
-    function setPseudo (txt) {
-      pseudo = txt;
-      trollbox_nick_btn.innerHTML = pseudo;
-      $store.set('.config/trollbox/_nick', pseudo);
-      socket.emit('user joined', pseudo, color, style, pass);
-    }
-
-    function h(dt) {
-      var dt = new Date(dt);
-      var h = dt.getHours()+'';
-      h = h.length > 1 ? h : '0' + h
-      var m = dt.getMinutes()+'';
-      m = m.length > 1 ? m : '0' + m
-      return h+':'+m
-    }
-
-    function RegExpEscape(text) {
-        return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"); 
-    }
-
-    function uniq(a) {
-        var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
-
-        return a.filter(function(item) {
-            var type = typeof item;
-            if(type in prims)
-                return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
-            else
-                return objs.indexOf(item) >= 0 ? false : objs.push(item);
+    } else {
+        window.top.$prompt('nickname?', '', function (ok, pseudo) {
+            setPseudo(pseudo);
         });
     }
+}
 
-  function replaceEmoticons(text,set) {
-    var emots = {
-      ";)": "wink",
-      ":)": "smile",
-      ":(": "sad", 
-      ":d": "grin", 
-      ":o": "suprised", 
-      ":p": "tongue", 
-      ":-|": "disappointed", 
-      ":'(": "cry", 
-      ":$": "shy", 
-      "(H)": "cool", 
-      "(bob)": "bob", 
-      ":@": "angry", 
-      ":s": "confused",
-      "<:o)": "party"
-    };
-    for(var key in emots){
-      if(emots.hasOwnProperty(key)){
-        text = text.replace(new RegExp(escapeRegExp(key), 'g'), '<img src="/trollbox/pix/emoticons/'+set+'/' + emots[key] + '.gif"/>');
-      }
+function setPseudo(pseudo) {
+    trollbox_nick_btn.innerHTML = pseudo;
+    $store.set('.config/trollbox/_nick', pseudo);
+    socket.emit('user joined', pseudo, color, style, pass);
+}
+
+function h(dt) {
+    var dt = new Date(dt);
+    var h = dt.getHours()+'';
+    h = h.length > 1 ? h : '0' + h
+    var m = dt.getMinutes()+'';
+    m = m.length > 1 ? m : '0' + m
+    return h+':'+m
+}
+
+function uniq(a) {
+    let prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
+
+    return a.filter(function(item) {
+        const type = typeof item;
+        if (type in prims) {
+            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+        } else {
+            return objs.indexOf(item) >= 0 ? false : objs.push(item);
+        }
+    });
+}
+
+function replaceEmoticons(text,set) {
+    for (let key in emots) {
+        if (emots.hasOwnProperty(key)) {
+            text = text.replace(new RegExp(escapeRegExp(key), 'g'), '<img src="/trollbox/pix/emoticons/'+set+'/' + emots[key] + '.gif"/>');
+        }
     }
     return text;
-  }
+}
 
-  function escapeRegExp(str) {
+function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-  }
+}
 
-    function printNick (data) {
-
-        if (data.nick==undefined) {data.nick='●'};
-        if (data.color==undefined) {data.color='white'};
-        if (data.style==undefined) {data.style=''};
-        if (decodeHtmlEntity(data.nick)==""){data.nick='●'};
-        if (typeof data.nick != "string") {return};
-        str="";
-        if (data.home) {
-          for (var i = 0; i < blocked.length; i++) {
-            if (data.home==blocked[i]) {
-              str="<span style='float: left;margin-right: 4px;margin-top: 1px;'>❌</span>";
-            };  
-          };          
-        };
-        name = "";
-        var test = (/image/).test(data.style);
-       
-        if (test) {  
-          name= str+'<span class="trollbox_nick" style="color:white;">❌' + data.nick + '</span>';
-          if (data.nick==pseudo) {
-             name = str+'<span class="trollbox_nick" style="color:' + data.color.split(";")[0]+';">' + data.nick + '</span>';  
-          };
-        }else{
-            name = str+'<span class="trollbox_nick" style="color:' + data.color.split(";")[0]+';">' + data.nick + '</span>';
-         }
-        return name;
-     }
-
-    var warnTxt = '/!\\ Be careful, commands will not affect your computer but can mess with your windows93 desktop and saved files...';
-    function getCmd (txt) {
-      var m = txt.match(/^\/([a-z]+) (.*)/)
-      if (m) return { cmd: m[1], val: m[2] }
+function printNick(data) {
+    data.nick = decodeHtmlEntity(data.nick) || '●';
+    if (typeof data.nick !== "string") {
+        return
     }
+    data.color = data.color || 'white';
+    data.style = data.style || '';
+    let str = "";
+    if (data.home) {
+        for (let i = 0; i < blocked.length; i++) {
+            if (data.home === blocked[i]) {
+                str="<span style='float: left;margin-right: 4px;margin-top: 1px;'>❌</span>";
+            }
+        }
+    }
+    let name = "";
+    let test = (/image/).test(data.style);
+    if (test) {
+        name= str+'<span class="trollbox_nick" style="color:white;">❌' + data.nick + '</span>';
+        if (data.nick === pseudo) {
+            name = str+'<span class="trollbox_nick" style="color:' + data.color.split(";")[0]+';">' + data.nick + '</span>';
+        }
+    } else {
+        name = str+'<span class="trollbox_nick" style="color:' + data.color.split(";")[0]+';">' + data.nick + '</span>';
+    }
+    return name;
+}
 
-    function sendMsg (msg) {
-      if (typeof msg !== 'string') return;
+let warnTxt = '/!\\ Be careful, commands will not affect your computer but can mess with your windows93 desktop and saved files...';
+function getCmd (txt) {
+    let m = txt.match(/^\/([a-z]+) (.*)/)
+    if (m) return { cmd: m[1], val: m[2] }
+}
+
+function sendMsg (msg) {
+    if (typeof msg !== 'string') return;
 	  
-	  msg = msg.replaceAll('telegram', 'tele\u200Bgram')
-	  msg = msg.replaceAll('.gg', '.\u200Bgg')
-	  msg = msg.replaceAll('discord', 'dis\u200Bcord')
-	  data = {msg}
-	  callbacks = Object.assign(window.addons.callbacks.messageSender)
-	  for(i=0;i<callbacks.length;i++) {
+    msg = msg.replaceAll('telegram', 'tele\u200Bgram');
+    msg = msg.replaceAll('.gg', '.\u200Bgg');
+	msg = msg.replaceAll('discord', 'dis\u200Bcord');
+	data = {msg};
+    callbacks = Object.assign(window.addons.callbacks.messageSender)
+    for (let i = 0; i < callbacks.length; i++) {
 	    callbacks[i](data)
-	  }
-	  msg = data.msg
-	  delete data
-	  delete callbacks
+    }
+    msg = data.msg
+    delete data
+    delete callbacks
       
-      if (color == undefined) {color='white'};
-      if (style == undefined) {style=''};
+    if (color === undefined) {color = 'white'}
+    if (style === undefined) {style = ''}
 
-      var cmd = getCmd(msg);
+    const cmd = getCmd(msg);
 
-      if (typeof msg === 'string') {
-
+    if (typeof msg === 'string') {
         if (msg.startsWith('/sin')) {
-          sin=true;
-          $store.set('.config/trollbox/sin', sin);
+            sin=true;
+            $store.set('.config/trollbox/sin', sin);
         }
 
         if (cmd) {
