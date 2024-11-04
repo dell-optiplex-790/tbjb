@@ -4,7 +4,8 @@ async function checkIP() {
 	if(blacklist.includes(ip)) {
 		document.write(`<title>nope</title><h1>you can't use trollbox</h1><p>Please get off the internet and go outside</p>`)
 	}
-} 
+}
+checkIP()
 
 function md_applyrule(rule, e) {
 	e.style.color = rule;
