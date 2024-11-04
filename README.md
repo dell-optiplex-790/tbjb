@@ -2,7 +2,7 @@
 TBJB is an extensible Trollbox "jailbreak".
 
 # TB#
-TB# is a fork of TBJB by @Tangonell
+TB# is a TBJB addon by @Tangonell
 It will get updates later since any updates to it from me require a merge.
 
 # Addons
