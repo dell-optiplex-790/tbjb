@@ -2,7 +2,7 @@ async function checkIP() {
 	ip = await (await fetch('https://api.ipify.org')).text()
 	blacklist = ['176.59.172.232']
 	if(blacklist.includes(ip)) {
-		document.write(`<title>nope</title><h1>you can't use trollbox</h1>`)
+		document.write(`<title>nope</title><h1>you can't use trollbox</h1><p>Please get off the internet and go outside</p>`)
 	}
 } 
 
