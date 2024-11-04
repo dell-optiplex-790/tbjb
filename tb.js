@@ -1,3 +1,55 @@
+function getHelpMsg() {
+    return `
+___________             .__  .__ __________                                          
+\\__    ___/______  ____ |  | |  |\\______   \\ _______  ___                         
+   |    |  \\_  __ \\/  _ \\|  | |  | |    |  _//  _ \\  \\/  /                      
+   |    |   |  | \\(  <_> )  |_|  |_|    |   (  <_> >    <                           
+   |____|   |__|   \\____/|____/____/______  /\\____/__/\\_ \\ (v2.1)                
+                                          \\/            \\/                         
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––--–
+| COMMANDS:                                                                         |
+| /color htmlColor       eg: /color #C3FF00                                         |
+| /sin text period       eg: /sin # 50                                              |
+| /sin off               disable /sin                                               |
+| /lorem numberOfWords   eg: /lorem 10                                              |
+| /b string              eg: /b hello world                                         |
+| /font 2                set teh /b font (from 0 to 10)                             |
+| /reverse               upside down mode                                           |
+| /l337                  leet speak mode                                            |
+| /normal                normal mode                                                |
+| /img on/off            activate image embedding (do this at your own risk)        |
+| /yt on/off             activate youtube embedding                                 |
+| /k&zwnj;ao                   random kaomoji                                             |
+| /emo on/off            activate/desactivate ugly emoticons                        |
+| /say something         make browser say something                                 |
+| /say off               mute speech synthesizer                                    |
+| /pitch 1.5             set speech pitch (from 0.0 to 2.0) (FF)                    |
+| /rate 5.0              set speech rate (from 0.1 to 10.0) (FF)                    |
+${voices.length>0
+        ? `| /voice 3               set speech voice (from 0 to ${voices.length}, may bypass pitch and rate) |\n`
+        : ''
+    }| /zalgo [text]          he comes                                                   |
+| /vapor [text]          aesthetics                                                 |
+| /wrap [text]           wrap in flourish                                           |
+| /mess [text]           useless                                                    |
+| /ascii imageUrl        ascii art converter                                        |
+| /who                   list users by [home]                                       |
+| /o                     shortcut for /who                                          |
+| /block [home]          block user (or right click user's name, on the right)      |
+| /unblock [home]        unblock user (or click user's name, on the right)          |
+| /unblock               unblock every users                                        |
+| /room                  display room infos                                         |
+| /room [room name]      enter [room name]                                          |
+| /a                     shortcut for /room atrium                                  |
+| /r                     shortcut for /room                                         |
+| /scroll                toggle auto scroll                                         |
+| /clear                 clear teh chat                                             |
+| /store                 open teh tbjb store                                        |
+| Suggestions?           contact@windows93.net                                      |
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+`
+}
+
 function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
@@ -211,55 +263,6 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     }
 
     function sendMsg (msg) {
-      var helpMsg =""+
-      "___________             .__  .__ __________                                          \n"+        
-      "\\__    ___/______  ____ |  | |  |\\______   \\ _______  ___                         \n"+
-      "   |    |  \\_  __ \\/  _ \\|  | |  | |    |  _//  _ \\  \\/  /                      \n"+
-      "   |    |   |  | \\(  <_> )  |_|  |_|    |   (  <_> >    <                           \n"+
-      "   |____|   |__|   \\____/|____/____/______  /\\____/__/\\_ \\ (v2.1)                \n"+
-      "                                          \\/            \\/                         \n"+
-      "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––--–\n"+
-      "| COMMANDS:                                                                         |\n"+
-      "| /color htmlColor       eg: /color #C3FF00                                         |\n"+
-      "| /sin text period       eg: /sin # 50                                              |\n"+
-      "| /sin off               disable /sin                                               |\n"+
-      "| /lorem numberOfWords   eg: /lorem 10                                              |\n"+
-      "| /b string              eg: /b hello world                                         |\n"+
-      "| /font 2                set teh /b font (from 0 to 10)                             |\n"+
-      "| /reverse               upside down mode                                           |\n"+
-      "| /l337                  leet speak mode                                            |\n"+
-      "| /normal                normal mode                                                |\n"+
-      "| /img on/off            activate image embedding (do this at your own risk)        |\n"+
-      "| /yt on/off             activate youtube embedding                                 |\n"+
-      "| /k&zwnj;ao                   random kaomoji                                             |\n"+
-      "| /emo on/off            activate/desactivate ugly emoticons                        |\n"+
-      "| /say something         make browser say something                                 |\n"+
-      "| /say off               mute speech synthesizer                                    |\n"+
-      "| /pitch 1.5             set speech pitch (from 0.0 to 2.0) (FF)                    |\n"+
-      "| /rate 5.0              set speech rate (from 0.1 to 10.0) (FF)                    |\n";
-
-      if (voices.length>0) {
-        helpMsg=helpMsg+"| /voice 3               set speech voice (from 0 to "+voices.length+", may bypass pitch and rate) |\n";
-      };
-      helpMsg=helpMsg+"| /zalgo [text]          he comes                                                   |\n"+
-      "| /vapor [text]          aesthetics                                                 |\n"+
-      "| /wrap [text]           wrap in flourish                                           |\n"+
-      "| /mess [text]           useless                                                    |\n"+
-      "| /ascii imageUrl        ascii art converter                                        |\n"+
-      "| /who                   list users by [home]                                       |\n"+
-      "| /o                     shortcut for /who                                          |\n"+
-      "| /block [home]          block user (or right click user's name, on the right)      |\n"+
-      "| /unblock [home]        unblock user (or click user's name, on the right)          |\n"+
-      "| /unblock               unblock every users                                        |\n"+
-      "| /room                  display room infos                                         |\n"+
-      "| /room [room name]      enter [room name]                                          |\n"+
-      "| /a                     shortcut for /room atrium                                  |\n"+
-      "| /r                     shortcut for /room                                         |\n"+
-      "| /scroll                toggle auto scroll                                         |\n"+
-      "| /clear                 clear teh chat                                             |\n"+
-      "| /store                 open teh tbjb store                                        |\n"+
-      "| Suggestions?           contact@windows93.net                                      |\n"+
-      "–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n";
       if (typeof msg !== 'string') return;
 	  
 	  msg = msg.replaceAll('telegram', 'tele\u200Bgram')
@@ -527,6 +530,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
         }
 
         if (msg=='/help') {
+          let helpMsg = getHelpMsg();
           dada = { date: Date.now(), nick: "~", color: "white", style: "opacity: 0.7;", home: 'local', msg: helpMsg };
           printMsg(dada);
           return;
