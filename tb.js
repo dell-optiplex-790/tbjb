@@ -76,6 +76,26 @@ const emots = {
     "<:o)": "party"
 };
 
+const faces = [
+    "( .-. )","( .o.)","( `·´ )","( ° ͜ ʖ °)","( ͡° ͜ʖ ͡°)","( ⚆ _ ⚆ )","( ︶︿︶)","( ﾟヮﾟ)","(\\/)(°,,,°)(\\/)",
+    "(¬_¬)","(¬º-°)¬","(¬‿¬)","(°ロ°)☝","(´・ω・)っ","(ó ì_í)","(ʘᗩʘ')","(ʘ‿ʘ)","(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄","(͡° ͜ʖ ͡°)","(ಠ_ಠ)",
+    "(ಠ‿ಠ)","(ಠ⌣ಠ)","(ಥ_ಥ)","(ಥ﹏ಥ)","(ง ͠° ͟ل͜ ͡°)ง","(ง ͡ʘ ͜ʖ ͡ʘ)ง","(ง •̀_•́)ง","(ง'̀-'́)ง","(ง°ل͜°)ง","(ง⌐□ل͜□)ง",
+    "(ღ˘⌣˘ღ)","(ᵔᴥᵔ)","(•ω•)","(•◡•)/","(⊙ω⊙)","(⌐■_■)","(─‿‿─)","(╯°□°）╯","(◕‿◕)","(☞ﾟ∀ﾟ)☞","(❍ᴥ❍ʋ)","(っ◕‿◕)っ",
+    "(づ｡◕‿‿◕｡)づ","(ノಠ益ಠ)ノ","(ノ・∀・)ノ","(；一_一)","(｀◔ ω ◔´)","(｡◕‿‿◕｡)","(ﾉ◕ヮ◕)ﾉ","*<{:¬{D}}}","=^.^=","t(-.-t)",
+    "| (• ◡•)|","~(˘▾˘~)","¬_¬","¯(°_o)/¯","¯\_(ツ)_/¯","°Д°","ɳ༼ຈل͜ຈ༽ɲ","ʅʕ•ᴥ•ʔʃ","ʕ´•ᴥ•`ʔ","ʕ•ᴥ•ʔ","ʕ◉.◉ʔ","ʕㅇ호ㅇʔ",
+    "ʕ；•`ᴥ•´ʔ","ʘ‿ʘ","͡° ͜ʖ ͡°","ζ༼Ɵ͆ل͜Ɵ͆༽ᶘ","Ѱζ༼ᴼل͜ᴼ༽ᶘѰ","ب_ب","٩◔̯◔۶","ಠ_ಠ","ಠoಠ","ಠ~ಠ","ಠ‿ಠ","ಠ⌣ಠ","ಠ╭╮ಠ","ರ_ರ",
+    "ง ͠° ل͜ °)ง","๏̯͡๏﴿","༼ ºººººل͟ººººº ༽","༼ ºل͟º ༽","༼ ºل͟º༼","༼ ºل͟º༽","༼ ͡■ل͜ ͡■༽","༼ つ ◕_◕ ༽つ","༼ʘ̚ل͜ʘ̚༽",
+    "ლ(´ڡ`ლ)","ლ(́◉◞౪◟◉‵ლ)","ლ(ಠ益ಠლ)","ᄽὁȍ ̪őὀᄿ","ᔑ•ﺪ͟͠•ᔐ","ᕕ( ᐛ )ᕗ","ᕙ(⇀‸↼‶)ᕗ","ᕙ༼ຈل͜ຈ༽ᕗ","ᶘ ᵒᴥᵒᶅ",
+    "‎‎(ﾉಥ益ಥ）ﾉ","≧☉_☉≦","⊙▃⊙","⊙﹏⊙","┌( ಠ_ಠ)┘","╚(ಠ_ಠ)=┐","◉_◉","◔ ⌣ ◔","◔̯◔","◕‿↼","◕‿◕","☉_☉","☜(⌒▽⌒)☞",
+    "☼.☼","♥‿♥","⚆ _ ⚆","✌(-‿-)✌","〆(・∀・＠)","ノ( º _ ºノ)","ノ( ゜-゜ノ)","ヽ( ͝° ͜ʖ͡°)ﾉ","ヽ(`Д´)ﾉ","ヽ༼° ͟ل͜ ͡°༽ﾉ",
+    "ヽ༼ʘ̚ل͜ʘ̚༽ﾉ","ヽ༼ຈل͜ຈ༽ง","ヽ༼ຈل͜ຈ༽ﾉ","ヽ༼Ὸل͜ຈ༽ﾉ","ヾ(⌐■_■)ノ","꒰･◡･๑꒱","﴾͡๏̯͡๏﴿","｡◕‿◕｡","ʕノ◔ϖ◔ʔノ","꒰•̥̥̥̥̥̥̥ ﹏ •̥̥̥̥̥̥̥̥๑꒱","ಠ_ರೃ",
+    "(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣ ू)","(ꈨຶꎁꈨຶ)۶”","(ꐦ°᷄д°᷅)","(۶ૈ ۜ ᵒ̌▱๋ᵒ̌ )۶ૈ=͟͟͞͞ ⌨","₍˄·͈༝·͈˄₎◞ ̑̑ෆ⃛","(*ﾟ⚙͠ ∀ ⚙͠)ﾉ❣","٩꒰･ัε･ั ꒱۶",
+    "ヘ（。□°）ヘ","˓˓(ृ　 ु ॑꒳’)ु(ृ’꒳ ॑ ृ　)ु˒˒˒","꒰✘Д✘◍꒱","૮( ᵒ̌ૢཪᵒ̌ૢ )ა","“ψ(｀∇´)ψ","ಠﭛಠ","(๑>ᴗ<๑)","(۶ꈨຶꎁꈨຶ )۶ʸᵉᵃʰᵎ",
+    "٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ","(oT-T)尸","(✌ﾟ∀ﾟ)☞","ಥ‿ಥ","ॱ॰⋆(˶ॢ‾᷄﹃‾᷅˵ॢ)","┬┴┬┴┤  (ಠ├┬┴┬┴","( ˘ ³˘)♥","Σ (੭ु ຶਊ ຶ)੭ु⁾⁾",
+    "(⑅ ॣ•͈ᴗ•͈ ॣ)","ヾ(´￢｀)ﾉ","(•̀o•́)ง","(๑•॒̀ ູ॒•́๑)","⚈้̤͡ ˌ̫̮ ⚈้̤͡","=͟͟͞͞ =͟͟͞͞ ﾍ( ´Д`)ﾉ","(((╹д╹;)))","•̀.̫•́✧",
+    "(ᵒ̤̑ ₀̑ ᵒ̤̑)","\_(ʘ_ʘ)_/"
+];
+
 function md_applyrule(rule, e) {
 	e.style.color = rule;
 }
@@ -256,32 +276,32 @@ function printNick(data) {
 }
 
 let warnTxt = '/!\\ Be careful, commands will not affect your computer but can mess with your windows93 desktop and saved files...';
-function getCmd (txt) {
-    let m = txt.match(/^\/([a-z]+) (.*)/)
+function getCmd(txt) {
+    const m = txt.match(/^\/([a-z]+) (.*)/)
     if (m) return { cmd: m[1], val: m[2] }
 }
 
-function sendMsg (msg) {
+// Bloody hell, was Janken on crack when he wrote this? Bless his heart.
+function sendMsg(msg) {
     if (typeof msg !== 'string') return;
 	  
-    msg = msg.replaceAll('telegram', 'tele\u200Bgram');
-    msg = msg.replaceAll('.gg', '.\u200Bgg');
-	msg = msg.replaceAll('discord', 'dis\u200Bcord');
+    msg = msg.replaceAll('telegram', 'tele\u200Bgram')
+        .replaceAll('.gg', '.\u200Bgg')
+        .replaceAll('discord', 'dis\u200Bcord');
 	data = {msg};
     callbacks = Object.assign(window.addons.callbacks.messageSender)
     for (let i = 0; i < callbacks.length; i++) {
 	    callbacks[i](data)
     }
-    msg = data.msg
-    delete data
-    delete callbacks
+    msg = data.msg;
+    delete data;
+    delete callbacks;
       
-    if (color === undefined) {color = 'white'}
-    if (style === undefined) {style = ''}
+    color = color || 'white';
+    style = style || '';
 
     const cmd = getCmd(msg);
 
-    if (typeof msg === 'string') {
         if (msg.startsWith('/sin')) {
             sin=true;
             $store.set('.config/trollbox/sin', sin);
@@ -561,16 +581,14 @@ function sendMsg (msg) {
 
         if (msg.length > 10000) msg = msg.slice(0, 10000);
         if (msg.trim() !== '') socket.emit('message', msg);
-      }
     }
 
-    function matchYoutubeUrl(url){
-      var p = /www\.youtube\.com/;
-       return (url.match(p)) ? true : false ;
-    }
+function matchYoutubeUrl(url){
+    const p = /www\.youtube\.com/;
+    return p.test(url);
+}
 
-    var faces = ["( .-. )","( .o.)","( `·´ )","( ° ͜ ʖ °)","( ͡° ͜ʖ ͡°)","( ⚆ _ ⚆ )","( ︶︿︶)","( ﾟヮﾟ)","(\\/)(°,,,°)(\\/)","(¬_¬)","(¬º-°)¬","(¬‿¬)","(°ロ°)☝","(´・ω・)っ","(ó ì_í)","(ʘᗩʘ')","(ʘ‿ʘ)","(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄","(͡° ͜ʖ ͡°)","(ಠ_ಠ)","(ಠ‿ಠ)","(ಠ⌣ಠ)","(ಥ_ಥ)","(ಥ﹏ಥ)","(ง ͠° ͟ل͜ ͡°)ง","(ง ͡ʘ ͜ʖ ͡ʘ)ง","(ง •̀_•́)ง","(ง'̀-'́)ง","(ง°ل͜°)ง","(ง⌐□ل͜□)ง","(ღ˘⌣˘ღ)","(ᵔᴥᵔ)","(•ω•)","(•◡•)/","(⊙ω⊙)","(⌐■_■)","(─‿‿─)","(╯°□°）╯","(◕‿◕)","(☞ﾟ∀ﾟ)☞","(❍ᴥ❍ʋ)","(っ◕‿◕)っ","(づ｡◕‿‿◕｡)づ","(ノಠ益ಠ)ノ","(ノ・∀・)ノ","(；一_一)","(｀◔ ω ◔´)","(｡◕‿‿◕｡)","(ﾉ◕ヮ◕)ﾉ","*<{:¬{D}}}","=^.^=","t(-.-t)","| (• ◡•)|","~(˘▾˘~)","¬_¬","¯(°_o)/¯","¯\_(ツ)_/¯","°Д°","ɳ༼ຈل͜ຈ༽ɲ","ʅʕ•ᴥ•ʔʃ","ʕ´•ᴥ•`ʔ","ʕ•ᴥ•ʔ","ʕ◉.◉ʔ","ʕㅇ호ㅇʔ","ʕ；•`ᴥ•´ʔ","ʘ‿ʘ","͡° ͜ʖ ͡°","ζ༼Ɵ͆ل͜Ɵ͆༽ᶘ","Ѱζ༼ᴼل͜ᴼ༽ᶘѰ","ب_ب","٩◔̯◔۶","ಠ_ಠ","ಠoಠ","ಠ~ಠ","ಠ‿ಠ","ಠ⌣ಠ","ಠ╭╮ಠ","ರ_ರ","ง ͠° ل͜ °)ง","๏̯͡๏﴿","༼ ºººººل͟ººººº ༽","༼ ºل͟º ༽","༼ ºل͟º༼","༼ ºل͟º༽","༼ ͡■ل͜ ͡■༽","༼ つ ◕_◕ ༽つ","༼ʘ̚ل͜ʘ̚༽","ლ(´ڡ`ლ)","ლ(́◉◞౪◟◉‵ლ)","ლ(ಠ益ಠლ)","ᄽὁȍ ̪őὀᄿ","ᔑ•ﺪ͟͠•ᔐ","ᕕ( ᐛ )ᕗ","ᕙ(⇀‸↼‶)ᕗ","ᕙ༼ຈل͜ຈ༽ᕗ","ᶘ ᵒᴥᵒᶅ","‎‎(ﾉಥ益ಥ）ﾉ","≧☉_☉≦","⊙▃⊙","⊙﹏⊙","┌( ಠ_ಠ)┘","╚(ಠ_ಠ)=┐","◉_◉","◔ ⌣ ◔","◔̯◔","◕‿↼","◕‿◕","☉_☉","☜(⌒▽⌒)☞","☼.☼","♥‿♥","⚆ _ ⚆","✌(-‿-)✌","〆(・∀・＠)","ノ( º _ ºノ)","ノ( ゜-゜ノ)","ヽ( ͝° ͜ʖ͡°)ﾉ","ヽ(`Д´)ﾉ","ヽ༼° ͟ل͜ ͡°༽ﾉ","ヽ༼ʘ̚ل͜ʘ̚༽ﾉ","ヽ༼ຈل͜ຈ༽ง","ヽ༼ຈل͜ຈ༽ﾉ","ヽ༼Ὸل͜ຈ༽ﾉ","ヾ(⌐■_■)ノ","꒰･◡･๑꒱","﴾͡๏̯͡๏﴿","｡◕‿◕｡","ʕノ◔ϖ◔ʔノ","꒰•̥̥̥̥̥̥̥ ﹏ •̥̥̥̥̥̥̥̥๑꒱","ಠ_ರೃ","(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣ ू)","(ꈨຶꎁꈨຶ)۶”","(ꐦ°᷄д°᷅)","(۶ૈ ۜ ᵒ̌▱๋ᵒ̌ )۶ૈ=͟͟͞͞ ⌨","₍˄·͈༝·͈˄₎◞ ̑̑ෆ⃛","(*ﾟ⚙͠ ∀ ⚙͠)ﾉ❣","٩꒰･ัε･ั ꒱۶","ヘ（。□°）ヘ","˓˓(ृ　 ु ॑꒳’)ु(ृ’꒳ ॑ ृ　)ु˒˒˒","꒰✘Д✘◍꒱","૮( ᵒ̌ૢཪᵒ̌ૢ )ა","“ψ(｀∇´)ψ","ಠﭛಠ","(๑>ᴗ<๑)","(۶ꈨຶꎁꈨຶ )۶ʸᵉᵃʰᵎ","٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ","(oT-T)尸","(✌ﾟ∀ﾟ)☞","ಥ‿ಥ","ॱ॰⋆(˶ॢ‾᷄﹃‾᷅˵ॢ)","┬┴┬┴┤  (ಠ├┬┴┬┴","( ˘ ³˘)♥","Σ (੭ु ຶਊ ຶ)੭ु⁾⁾","(⑅ ॣ•͈ᴗ•͈ ॣ)","ヾ(´￢｀)ﾉ","(•̀o•́)ง","(๑•॒̀ ູ॒•́๑)","⚈้̤͡ ˌ̫̮ ⚈้̤͡","=͟͟͞͞ =͟͟͞͞ ﾍ( ´Д`)ﾉ","(((╹д╹;)))","•̀.̫•́✧","(ᵒ̤̑ ₀̑ ᵒ̤̑)","\_(ʘ_ʘ)_/"]
-
+// Bloody fucking hell. This code is a crime against humanity.
     function printMsg (data) {
 
 		let helper = document.createElement('div'); helper.innerHTML = data.msg;
@@ -724,84 +742,83 @@ function sendMsg (msg) {
       
     }
 
-     socket.on('_connected', function (data) {
-      	welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
-        if(welcomed=='false') {
-           alert('Welcome to TBJB!\nTBJB has been successfully installed.')
-           localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
-        }
-     });
+socket.on('_connected', function (data) {
+    welcomed = localStorage.getItem('.config/trollbox/tbjb_welcomed')
+    if (welcomed === 'false') {
+        alert('Welcome to TBJB!\nTBJB has been successfully installed.')
+        localStorage.setItem('.config/trollbox/tbjb_welcomed', 'true')
+    }
+});
 
-    socket.on('update history', function (data) {
-      data.forEach(function (item) {
+socket.on('update history', function (data) {
+    data.forEach(function (item) {
         printMsg(item)
-      })
     });
+});
 
-    socket.on('update users', function (data) {
-      users=[];
-      for (var key in data) {
+socket.on('update users', function (data) {
+    users=[];
+    for (var key in data) {
         if (!users[data[key].home]) {
-          users[data[key].home]=[he.decode(data[key].nick)]
-          
-        }else{
-          users[data[key].home].push(he.decode(data[key].nick));
+            users[data[key].home] = [he.decode(data[key].nick)];
+        } else {
+            users[data[key].home].push(he.decode(data[key].nick));
         }
-      }
-      trollbox_infos.innerHTML = ''
-      var frag = document.createDocumentFragment()
-      for (var key in data) {
+    }
+    trollbox_infos.innerHTML = ''
+    const frag = document.createDocumentFragment()
+    for (let key in data) {
         if (data.hasOwnProperty(key)) {
-          var div = document.createElement('div');
-          div.innerHTML = printNick(data[key]);
-          frag.appendChild(div);
+            var div = document.createElement('div');
+            div.innerHTML = printNick(data[key]);
+            frag.appendChild(div);
         }
-      }
-      trollbox_infos.appendChild(frag);
-      chatKing();
-    });
+    }
+    trollbox_infos.appendChild(frag);
+    chatKing();
+});
 
-    socket.on('user joined', function (data) {
-       if (data.nick){}else{return}
-       if( typeof data.nick === 'undefined' || data.nick === null || data.nick == undefined){
-        data.nick="anonymous"
-       }
-       if (data.nick==undefined) {data.nick="anonymous"};
-       if (typeof data.nick != "string") {return};
-       for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
-       if (data.nick) {
-		callbacks = Object.assign(window.addons.callbacks.userListener)
-		for(i=0;i<callbacks.length;i++) {
-	    		callbacks[i]('join', data)
-	  	}
-	        dada = {date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'}
-	  	callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender)
-		for(i=0;i<callbacks2.length;i++) {
-	    		callbacks2[i]('join', data, dada)
-	  	}
-	  	delete callbacks
-	        delete callbacks2
-	        printMsg(dada)
-       }
-    });
+socket.on('user joined', function (data) {
+    if (!data.nick) return;
+    data.nick = data.nick || 'anonymous';
+    for (let i = 0; i < blocked.length; i++) {
+        if (data.home === blocked[i]) return;
+    }
+    if (data.nick) {
+        callbacks = Object.assign(window.addons.callbacks.userListener)
+        for(i=0;i<callbacks.length;i++) {
+            callbacks[i]('join', data);
+        }
+        dada = {date: Date.now(), color: '#0f0', nick: '→', home: data.home, msg: printNick(data) + ' <em>has entered teh trollbox</em>'}
+        callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender)
+        for(let i = 0; i < callbacks2.length; i++) {
+            callbacks2[i]('join', data, dada);
+        }
+        delete callbacks;
+        delete callbacks2;
+        printMsg(dada);
+    }
+});
 
-    socket.on('user left', function (data) {
-       for (var i = 0; i < blocked.length; i++) { if (data.home==blocked[i]) {return} };
-       if (data.nick) {
-	       	callbacks = Object.assign(window.addons.callbacks.userListener)
-		for(i=0;i<callbacks.length;i++) {
-	    		callbacks[i]('leave', data)
-	  	}
-	        dada = {date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'}
-	       	callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender)
-		for(i=0;i<callbacks2.length;i++) {
-	    		callbacks2[i]('leave', data, dada)
-	  	}
-	  	delete callbacks
-	        delete callbacks2
-	        printMsg(dada)
-       }
-    });
+socket.on('user left', function (data) {
+    for (let i = 0; i < blocked.length; i++) {
+        if (data.home === blocked[i]) return;
+    }
+    if (data.nick) {
+        callbacks = Object.assign(window.addons.callbacks.userListener)
+        for(i=0;i<callbacks.length;i++) {
+            callbacks[i]('leave', data);
+        }
+        dada = {date: Date.now(), color: '#f00', nick: '←', home: data.home, msg: printNick(data) + ' <em>has left teh trollbox</em>'}
+        callbacks2 = Object.assign(window.addons.callbacks.userActionMessageSender);
+        for(i=0;i<callbacks2.length;i++) {
+            callbacks2[i]('leave', data, dada);
+        }
+        delete callbacks;
+        delete callbacks2;
+        printMsg(dada);
+    }
+});
 
     socket.on('user change nick', function (data) {
         if (data[0].nick==data[1].nick) {return};
