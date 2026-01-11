@@ -56,7 +56,7 @@ var trollbox_scroll = document.getElementById('trollbox_scroll');
     var trollbox_input = document.getElementById('trollbox_input');
 
     //var socket = io();
-    var socket = io('//www.windows93.net:8081');
+    var socket = io('http://www.windows93.net:8081');
 
     var pseudo = $store.get('.config/trollbox/_nick') || '';
     var color = $store.get('.config/trollbox/color') || '';
