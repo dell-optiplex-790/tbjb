@@ -4,9 +4,6 @@
         return;
     }
     window.bb = true;
-    window.$prompt = function(q) {
-        return prompt(q);
-    }
     let isTB = false;
     let iframe = document.createElement('iframe');
 
