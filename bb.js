@@ -4,6 +4,9 @@
         return;
     }
     window.bb = true;
+    window.$prompt = function(q) {
+        return prompt(q);
+    }
     let js;
     let isTB = false;
     const request = new XMLHttpRequest();
